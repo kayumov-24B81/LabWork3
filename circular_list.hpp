@@ -72,11 +72,8 @@ class CircularList
         iterator insert(iterator pos, const T& value);
         iterator erase(iterator pos);
         void assign(size_t n, const T& value);
-    
-        template<typename InputIterator>
-        void assign(InputIterator first, InputIterator last);
-    
         void assign(std::initializer_list<T> init);
+    
         void swap(CircularList& other) noexcept;
 
         bool operator==(const CircularList& other) const;
@@ -499,20 +496,13 @@ void CircularList<T>::assign(size_t n, const T& value)
 }
 
 template <typename T>
-template<typename InputIterator>
-void CircularList<T>::assign(InputIterator first, InputIterator last)
+void CircularList<T>::sassign(std::initializer_list<T> init) 
 {
     clear();
-    for (auto it = first; it != last; ++it)
+    for (const auto& value : init) 
     {
-        push_back(*it);
+        push_back(value);
     }
-}
-
-template <typename T>
-void CircularList<T>::assign(std::initializer_list<T> init)
-{
-    assign(init.begin(), init.end());
 }
 
 template <typename T>
@@ -725,11 +715,4 @@ bool CircularList<T>::const_iterator::operator!=(const const_iterator& other) co
 {
     return !(*this == other);
 }
-
-template<typename T>
-void swap(CircularList<T>& lhs, CircularList<T>& rhs) noexcept
-{
-    lhs.swap(rhs);
-}
-
 #endif

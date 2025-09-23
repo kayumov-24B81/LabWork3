@@ -496,7 +496,7 @@ void CircularList<T>::assign(size_t n, const T& value)
 }
 
 template <typename T>
-void CircularList<T>::sassign(std::initializer_list<T> init) 
+void CircularList<T>::assign(std::initializer_list<T> init) 
 {
     clear();
     for (const auto& value : init) 
